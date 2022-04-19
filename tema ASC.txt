@@ -1,0 +1,46 @@
+;Problema 7.Nu am reusit sa o fac pentru un numar cu mai multe cifre ,am facut-o doar pentru o cifra
+section .data   
+
+section .bss
+   num resb 5
+section .text
+   global _start
+	
+_start:               
+   mov eax, 3
+   mov ebx, 0
+   mov ecx, num  
+   mov edx, 5         
+   int 80h
+   
+   mov ax,[num]
+   sub ax,'0'
+   and ax,1
+   
+   jz evnn
+   
+   mov eax,[num]
+   sub eax,'0'
+   sub eax,1
+   add eax,'0'
+   mov [num],eax
+   
+   mov eax, 4
+   mov ebx, 1
+   mov ecx, num
+   mov edx, 5
+   int 80h  
+   
+   jmp outprog
+   
+   evnn:
+   mov eax, 4
+   mov ebx, 1
+   mov ecx, num
+   mov edx, 5
+   int 80h
+    
+   outprog:
+   mov eax, 1
+   mov ebx, 0
+   int 80h
